@@ -37,11 +37,9 @@ namespace grpc {
 class ServerContext;
 }  // namespace grpc
 
-namespace flyteidl {
-namespace plugins {
+namespace flyteidl_flink {
 
-}  // namespace plugins
-}  // namespace flyteidl
+}  // namespace flyteidl_flink
 
 
 #endif  // GRPC_flyteidl_2fplugins_2fflink_2eproto__INCLUDED

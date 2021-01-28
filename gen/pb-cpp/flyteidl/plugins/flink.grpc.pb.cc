@@ -16,9 +16,7 @@
 #include <grpcpp/impl/codegen/server_callback.h>
 #include <grpcpp/impl/codegen/service_type.h>
 #include <grpcpp/impl/codegen/sync_stream.h>
-namespace flyteidl {
-namespace plugins {
+namespace flyteidl_flink {
 
-}  // namespace flyteidl
-}  // namespace plugins
+}  // namespace flyteidl_flink
 

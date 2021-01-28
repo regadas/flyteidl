@@ -1,8 +1,33 @@
 syntax = "proto3";
 
-package flyteidl.plugins;
+package flyteidl_flink;
 
-option go_package = "github.com/lyft/flyteidl/gen/pb-go/flyteidl/plugins";
+option go_package = "ghe.spotify.net/flink/flyte-flink-plugin/gen/pb-go/flyteidl-flink";
+
+import "k8s.io/apimachinery/pkg/api/resource/generated.proto";
+
+message Resource {
+  message PersistentVolume {
+    enum Type {
+      PD_STANDARD = 0;
+      PD_SSD = 1;
+    }
+
+    Type type = 1;
+    k8s.io.apimachinery.pkg.api.resource.Quantity size = 2;
+  }
+
+  k8s.io.apimachinery.pkg.api.resource.Quantity cpu = 1;
+  k8s.io.apimachinery.pkg.api.resource.Quantity memory = 2;
+  PersistentVolume persistentVolume = 3;
+}
+
+message JobManager { Resource resource = 1; }
+
+message TaskManager {
+  Resource resource = 1;
+  int32 replicas = 2;
+}
 
 // Custom Proto for Flink Plugin.
 message FlinkJob {
@@ -10,4 +35,7 @@ message FlinkJob {
   string mainClass = 2;
   repeated string args = 3;
   map<string, string> flinkProperties = 4;
+
+  JobManager jobManager = 5;
+  TaskManager taskManager = 6;
 }
